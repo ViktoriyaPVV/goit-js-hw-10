@@ -71,9 +71,10 @@ function onClick(event) {
   dateTimeInput.disabled = true;
   const intervalId = setInterval(() => {
     const diff = userSelectedDate.getTime() - Date.now();
-    if (diff === 0) {
+    if (diff <= 0) {
       dateTimeInput.disabled = false;
       clearInterval(intervalId);
+      addLeadingZero({ days: 0, hours: 0, minutes: 0, seconds: 0 });
       return;
     }
     const timeComponents = convertMs(diff);
